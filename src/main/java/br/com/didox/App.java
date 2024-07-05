@@ -1,13 +1,14 @@
 package br.com.didox;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        int num1 = 3;
+        var num2 = 5;
+
+        int soma = num1 + num2;
+
+        System.out.println("O resultado da Operaççao é: " + soma);
     }
 }
