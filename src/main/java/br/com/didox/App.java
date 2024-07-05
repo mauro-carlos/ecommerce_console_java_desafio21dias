@@ -23,15 +23,15 @@ public class App
 
         BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("digite um numero");
+        System.out.println("digite um numero da variavel X");
 
         int x = Integer.parseInt(entrada.readLine());
 
-        System.out.println("digite outro numero");
+        System.out.println("digite outro numero da Variavel Y");
 
         int y = Integer.parseInt(entrada.readLine());
 
-        int calculoExpressao = (x * 8 + y) - (x + y)/100;
+        int calculoExpressao = (x * 8 + y) - x + y/100;
 
         System.out.println("o resultado da expressao: " + calculoExpressao);
         
