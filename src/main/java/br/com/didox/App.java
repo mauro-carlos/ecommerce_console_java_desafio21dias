@@ -3,7 +3,10 @@ package br.com.didox;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.DecimalFormat;
+import javax.swing.*;
+import java.util.*;
+import java.text.*;
+
 import java.util.Scanner;
 
 public class App 
@@ -187,38 +190,96 @@ public class App
          */
 
          BufferedReader reader = new BufferedReader(
-            new InputStreamReader(System.in));
+          new InputStreamReader(System.in));
+          /*
+           * Paula tem um Petshop, ela esta precisando de um sistema 
+           * para Controlar seus serviços. neste sistema precisa, cadastrar
+           * o cliente (Dados Básicos) os dados do Pet e o  peso do Pet,
+           * depois o sistema deverá calcular o valor do banho pelo peso do Pet.           * 
+           * Qual será este Calculo:
+           * - Para Macho:
+           *  (pesoDoPet * valorPorPeso) + (pesoDoPet * valorPorPeso) * 15/100
+           * - Para Femea:
+           *   (pesoDoPet * valorPorPeso) + (pesoDoPet * valorPorPeso) * 30/100
+           * Feito o calculo o sistema deverá mostrar um relatório com os dados do
+           * pedido e o valor a pagar
+           * 
+           * Coloque uma usabilidade agradavél. 
+           * 
+           */
+          
+           var mensagem = "[PetShop da Paula]\nVamos começar?";
+           JOptionPane.showMessageDialog(null,mensagem);
 
-         System.out.println("================[Calculo Produto/Cliente]===========================");
-         System.out.println("Olá João Seja Muito Bem Vindo, Vamos Começar?");
+          
+           String nome = JOptionPane.showInputDialog("Digite o Nome do Cliente");           
+           String telefone = JOptionPane.showInputDialog("Digite o Telefone do Cliente" + nome);
+           String nomeDoPet = JOptionPane.showInputDialog("Digite o Nome(s) do Pet"); 
+           double pesoDoPet = Double.parseDouble(JOptionPane.showInputDialog("Digite o Peso do(a) Pet" + nomeDoPet)); 
+           int sexoDoPet = Integer.parseInt(JOptionPane.showInputDialog("O(a) " + nomeDoPet + " é Macho ou femea?\n1 - Macho\n2 - Femea"));
+           double valorPorPeso = Double.parseDouble(JOptionPane.showInputDialog("Digite R$ valor por Peso"));
+
+           double resultado = 0;
+
+           if(sexoDoPet == 2) {
+            resultado = (pesoDoPet * valorPorPeso) + (pesoDoPet * valorPorPeso) * 30/100;
+
+           }else {
+            resultado = (pesoDoPet * valorPorPeso) + (pesoDoPet * valorPorPeso) * 15/100;
+           }
+           
+           var relatorio = "Nome do Cliente: " + nome +"\n";
+           relatorio += "Telefone do(a) " + nome + ": "+ telefone + "\n";
+           relatorio += "Pet do(a) " + nome + ": "+ nomeDoPet + "\n";
+           relatorio += "Peso do(a) " + nomeDoPet + ": "+ pesoDoPet +"\n\n";
+
+           Locale localeBr = new Locale("pt","BR");
+           NumberFormat dinheiroBr = NumberFormat.getCurrencyInstance(localeBr);
+           var valorFormatado = dinheiroBr.format(resultado);
+
+
+
+           relatorio += "Valor Total do Serviço: " + valorFormatado;
+
+           JOptionPane.showMessageDialog(null, resultado);
+           
+           JOptionPane.showMessageDialog(null, relatorio);
+            
+           
+        
+
+
+        //  System.out.println("================[Calculo Produto/Cliente]===========================");
+        //  System.out.println("Olá João Seja Muito Bem Vindo, Vamos Começar?");
          
-         System.out.println("Digite o nome do Seu Cliente: ");
-         var nome = reader.readLine();
+        //  System.out.println("Digite o nome do Seu Cliente: ");
+        //  var nome = reader.readLine();
 
-         System.out.println("Digite o Endereço do Seu Cliente: ");
-         var endereco = reader.readLine();
+        //  System.out.println("Digite o Endereço do Seu Cliente: ");
+        //  var endereco = reader.readLine();
 
-         System.out.println("Digite o nome do Produto do seu Cliente: ");
-         var produto = reader.readLine();
+        //  System.out.println("Digite o nome do Produto do seu Cliente: ");
+        //  var produto = reader.readLine();
 
-         System.out.printf("Digite o Valor do Produto (%s) do seu Cliente: ", produto);
-         var valor = Double.parseDouble(reader.readLine());
+        //  System.out.printf("Digite o Valor do Produto (%s) do seu Cliente: ", produto);
+        //  var valor = Double.parseDouble(reader.readLine());
 
-         System.out.printf("Digite a quantidade do Produto (%s) do seu Cliente: ", produto);
-         var quantidade = Integer.parseInt(reader.readLine());
+        //  System.out.printf("Digite a quantidade do Produto (%s) do seu Cliente: ", produto);
+        //  var quantidade = Integer.parseInt(reader.readLine());
 
-         var valorTotal = valor * quantidade;
+        //  var valorTotal = valor * quantidade;
 
-         System.out.println("--------------------------------------------------");        
-         System.out.printf("Cliente: %s\n", nome);
-         System.out.printf("Endereco de Entrega: %s\n", endereco);
-         System.out.printf("Comprou o material : %s no Valor R$ %.2f\n",produto, valor);
-         System.out.printf("O valor total da compra deu : R$ %.2f\n", valorTotal);
+        //  System.out.println("--------------------------------------------------");        
+        //  System.out.printf("Cliente: %s\n", nome);
+        //  System.out.printf("Endereco de Entrega: %s\n", endereco);
+        //  System.out.printf("Comprou o material : %s no Valor R$ %.2f\n",produto, valor);
+        //  System.out.printf("O valor total da compra deu : R$ %.2f\n", valorTotal);
 
-         if (valorTotal > 100)
-           System.out.println("Seu pedido foi maior que 100, Terá um desconto na proxima compra");
-         
-         System.out.println("----------------------------------------------------");
+        //  if (valorTotal > 100)
+        //    System.out.println("Seu pedido foi maior que 100, Terá um desconto na proxima compra");         
+        //  System.out.println("----------------------------------------------------");
+
+
 
     }
 
